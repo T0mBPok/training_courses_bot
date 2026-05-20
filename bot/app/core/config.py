@@ -6,22 +6,23 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "Skill Assessment Bot"
-    debug: bool
+    debug: bool = True
 
-    BOT_TOKEN: str
-    DATABASE_URL: str
+    bot_token: str = "123456:change_me"
+    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/skill_bot"
 
-    NEURAL_API_BASE_URL: str
-    NEURAL_API_SSL_VERIFY: bool 
-    NEURAL_SURVEY_API_ENABLED: bool 
-    NEURAL_SURVEY_USE_LLM: bool 
-    NEURAL_ASSESSMENT_API_ENABLED: bool 
-    NEURAL_API_ERROR_LOG_PATH: str 
-    USE_MOCK_NEURAL_API: bool
+    neural_api_base_url: str = "https://example.com/api"
+    neural_api_token: str = "change_me"
+    neural_api_ssl_verify: bool = False
+    neural_survey_api_enabled: bool = True
+    neural_survey_use_llm: bool = False
+    neural_assessment_api_enabled: bool = False
+    neural_api_error_log_path: str = "logs/neural_api_errors.log"
+    use_mock_neural_api: bool = True
 
-    MINI_APP_URL: str
-    WEBHOOK_URL: str
-    RUN_POLLING: bool = True
+    mini_app_url: str = "https://example.com/miniapp"
+    webhook_url: str = "https://example.com/telegram/webhook"
+    run_polling: bool = True
 
     model_config = SettingsConfigDict(
         env_file=".env",
